@@ -37,14 +37,14 @@ public class Audit {
 
     }
 
-    @AfterThrowing("execution(* com.sp.aop..*.*(..))")
+   // @AfterThrowing("execution(* com.sp.aop..*.*(..))")
     public void afterThrowingAdvice(JoinPoint jp, Throwable error){
         System.out.println("Method Signature: "  + jp.getSignature());
         System.out.println("Exception: "+error);
     }
 
 
-    @AfterReturning(pointcut = "execution(* com.sp.aop..*.*(..))", returning="retVal")
+    //@AfterReturning("execution(* com.sp.aop..*.*(..))")
     public void doAfterReturnningTask(Object retVal) {
         log.info("this response contain {} object",retVal.getClass().getName());
     }
