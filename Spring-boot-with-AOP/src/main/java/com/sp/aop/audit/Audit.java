@@ -2,10 +2,7 @@ package com.sp.aop.audit;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -44,6 +41,12 @@ public class Audit {
     public void afterThrowingAdvice(JoinPoint jp, Throwable error){
         System.out.println("Method Signature: "  + jp.getSignature());
         System.out.println("Exception: "+error);
+    }
+
+
+    @AfterReturning(pointcut = "execution(* com.sp.aop..*.*(..))", returning="retVal")
+    public void doAfterReturnningTask(Object retVal) {
+        log.info("this response contain {} object",retVal.getClass().getName());
     }
 
 
